@@ -21,7 +21,7 @@ namespace Hangfire.SubPub
             _lifetime = lifetime;
         }
 
-        public HangfireSubPub<TEvent> Subscribe<THandler>() where THandler : IHangfireEventHandler<TEvent>
+        public HangfireSubPub<TEvent> Subscribe<THandler>(params Type[] events) where THandler : IHangfireEventHandler<TEvent>
         {
             if (!_services.Any(x => x.ServiceType == typeof(THandler)))
             {
@@ -42,7 +42,7 @@ namespace Hangfire.SubPub
             }
             var sp = _services.BuildServiceProvider();
             var eventHandlerContainer = sp.GetRequiredService<HangfireEventHandlerContainer>();
-            eventHandlerContainer.Subscribe<TEvent, THandler>();
+            eventHandlerContainer.Subscribe<TEvent, THandler>(events);
             return this;
         }
     }

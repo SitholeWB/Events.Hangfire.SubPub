@@ -21,9 +21,11 @@ namespace Registration.Api
 
             builder.Services.AddHangfire(x => x.UseSQLiteStorage());
             builder.Services.AddHangfireServer();
+
             builder.Services.AddHangfireSubPub<RegisterEvent>()
                             .Subscribe<RegisterHandler>()
                             .Subscribe<Register2Handler>();
+
             builder.Services.AddHangfireSubPub<DuplicateRegisterEvent>()
                             .Subscribe<DuplicateRegisterHandler>();
 

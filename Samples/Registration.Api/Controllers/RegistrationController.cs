@@ -21,11 +21,48 @@ namespace Registration.Api.Controllers
         [HttpPost]
         public IActionResult Register(RegisterModel model)
         {
-            _hangfireEventHandlerContainer.Publish(new RegisterEvent
+            var registerEvent = new RegisterEvent
             {
                 Email = model.Email,
                 Date = DateTimeOffset.Now,
-            });
+            };
+
+            _hangfireEventHandlerContainer.Publish(registerEvent);
+
+            return Ok();
+        }
+
+        [HttpPost("royal")]
+        public IActionResult RegisterRoyal(RegisterModel model)
+        {
+            var registerEvent = new RoyalRegisterEvent
+            {
+                Email = model.Email,
+                Date = DateTimeOffset.Now,
+            };
+
+            _hangfireEventHandlerContainer.Publish(registerEvent);
+
+            return Ok();
+        }
+
+        [HttpPost("schedule")]
+        public IActionResult RegisterSchedule(RegisterModel model)
+        {
+            var registerEvent = new RegisterEvent
+            {
+                Email = model.Email,
+                Date = DateTimeOffset.Now,
+            };
+
+            var options = new HangfireJobOptions
+            {
+                HangfireJobType = HangfireJobType.Schedule,
+                TimeSpan = TimeSpan.FromSeconds(15)
+            };
+
+            _hangfireEventHandlerContainer.Publish(registerEvent, options);
+
             return Ok();
         }
     }
