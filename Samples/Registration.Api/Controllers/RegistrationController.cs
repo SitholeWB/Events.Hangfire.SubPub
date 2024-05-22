@@ -46,6 +46,20 @@ namespace Registration.Api.Controllers
             return Ok();
         }
 
+        [HttpPost("base")]
+        public IActionResult RegisterBase(RegisterModel model)
+        {
+            var registerEvent = new BaseRegisterEvent
+            {
+                PhysicalAddress = "Somewhere peaceful",
+                PostalAddress = "12 peaceful street, Nice Place 4001",
+            };
+
+            _hangfireEventHandlerContainer.Publish(registerEvent);
+
+            return Ok();
+        }
+
         [HttpPost("schedule")]
         public IActionResult RegisterSchedule(RegisterModel model)
         {

@@ -29,6 +29,9 @@ namespace Registration.Api
             builder.Services.AddHangfireSubPub<DuplicateRegisterEvent>()
                             .Subscribe<DuplicateRegisterHandler>();
 
+            builder.Services.AddHangfireSubPub<BaseRegisterEvent>()
+                            .Subscribe<BaseRegisterHandler>();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
