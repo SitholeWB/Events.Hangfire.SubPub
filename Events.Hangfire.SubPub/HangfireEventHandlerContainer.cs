@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Hangfire;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
-namespace Hangfire.SubPub
+namespace Events.Hangfire.SubPub
 {
     public class HangfireEventHandlerContainer : IHangfireEventHandlerContainer
     {

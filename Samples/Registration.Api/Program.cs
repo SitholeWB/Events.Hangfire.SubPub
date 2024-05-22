@@ -1,6 +1,6 @@
 using Hangfire;
 using Hangfire.Storage.SQLite;
-using Hangfire.SubPub;
+using Events.Hangfire.SubPub;
 using Registration.Api.Events;
 using Registration.Api.Handlers;
 
