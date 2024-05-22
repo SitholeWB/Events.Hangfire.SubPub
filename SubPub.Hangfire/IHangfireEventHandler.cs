@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Events.Hangfire.SubPub
+namespace SubPub.Hangfire
 {
     public interface IHangfireEventHandler<T> where T : class
     {

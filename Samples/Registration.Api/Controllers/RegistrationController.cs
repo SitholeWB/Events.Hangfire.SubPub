@@ -1,4 +1,4 @@
-using Events.Hangfire.SubPub;
+using SubPub.Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Registration.Api.Events;
 using Registration.Api.Models;

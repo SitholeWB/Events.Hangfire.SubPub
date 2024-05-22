@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
-namespace Events.Hangfire.SubPub
+namespace SubPub.Hangfire
 {
     public class HangfireEventHandlerContainer : IHangfireEventHandlerContainer
     {

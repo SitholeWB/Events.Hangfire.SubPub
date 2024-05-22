@@ -1,4 +1,4 @@
-﻿namespace Events.Hangfire.SubPub
+﻿namespace SubPub.Hangfire
 {
     public interface IHangfireEventHandlerContainer
     {

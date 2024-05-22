@@ -6,10 +6,10 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Version>2.0.1</Version>
     <Authors>Welcome Sithole</Authors>
-    <PackageProjectUrl>https://github.com/SitholeWB/Events.Hangfire.SubPub</PackageProjectUrl>
-    <Copyright>https://raw.githubusercontent.com/SitholeWB/Events.Hangfire.SubPub/main/LICENSE</Copyright>
+    <PackageProjectUrl>https://github.com/SitholeWB/SubPub.Hangfire</PackageProjectUrl>
+    <Copyright>https://raw.githubusercontent.com/SitholeWB/SubPub.Hangfire/main/LICENSE</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/SitholeWB/Events.Hangfire.SubPub</RepositoryUrl>
+    <RepositoryUrl>https://github.com/SitholeWB/SubPub.Hangfire</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>hangfire;SubPub;EventSourcing;Topics;PublishSubscribe</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

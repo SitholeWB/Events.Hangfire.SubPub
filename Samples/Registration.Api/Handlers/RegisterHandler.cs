@@ -1,4 +1,4 @@
-﻿using Events.Hangfire.SubPub;
+﻿using SubPub.Hangfire;
 using Registration.Api.Events;
 
 namespace Registration.Api.Handlers

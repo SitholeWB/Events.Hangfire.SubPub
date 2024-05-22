@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Events.Hangfire.SubPub
+namespace SubPub.Hangfire
 {
     public class HangfireJobOptions
     {

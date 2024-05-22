@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Events.Hangfire.SubPub
+namespace SubPub.Hangfire
 {
     public class HangfireSubPub<TEvent> where TEvent : class
     {

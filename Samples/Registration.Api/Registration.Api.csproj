@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Events.Hangfire.SubPub\Events.Hangfire.SubPub.csproj" />
+    <ProjectReference Include="..\..\SubPub.Hangfire\SubPub.Hangfire.csproj" />
   </ItemGroup>
 
 </Project>

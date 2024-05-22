@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Linq;
 
-namespace Events.Hangfire.SubPub
+namespace SubPub.Hangfire
 {
     public static class HangfireExtensions
     {
