@@ -1,6 +1,6 @@
 # SubPub.Hangfire
 
-```
+```C#
 
     public class RegisterEvent
     {
