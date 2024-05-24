@@ -1,7 +1,7 @@
-using SubPub.Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using Registration.Api.Events;
 using Registration.Api.Models;
+using SubPub.Hangfire;
 
 namespace Registration.Api.Controllers
 {
@@ -10,11 +10,9 @@ namespace Registration.Api.Controllers
     public class RegistrationController : ControllerBase
     {
         private readonly IHangfireEventHandlerContainer _hangfireEventHandlerContainer;
-        private readonly ILogger<RegistrationController> _logger;
 
-        public RegistrationController(ILogger<RegistrationController> logger, IHangfireEventHandlerContainer hangfireEventHandlerContainer)
+        public RegistrationController(IHangfireEventHandlerContainer hangfireEventHandlerContainer)
         {
-            _logger = logger;
             _hangfireEventHandlerContainer = hangfireEventHandlerContainer;
         }
 

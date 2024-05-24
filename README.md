@@ -1,5 +1,9 @@
 # SubPub.Hangfire
 
+```nuget
+Install-Package SubPub.Hangfire
+```
+
 ```C#
 
     public class RegisterEvent
@@ -47,6 +51,33 @@
             return Task.CompletedTask;
         }
     }
+
+    [ApiController]
+    [Route("[controller]")]
+    public class RegistrationController : ControllerBase
+    {
+        private readonly IHangfireEventHandlerContainer _hangfireEventHandlerContainer;
+
+        public RegistrationController(IHangfireEventHandlerContainer hangfireEventHandlerContainer)
+        {
+            _hangfireEventHandlerContainer = hangfireEventHandlerContainer;
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterModel model)
+        {
+            var registerEvent = new RegisterEvent
+            {
+                Email = model.Email,
+                Date = DateTimeOffset.Now,
+            };
+
+            _hangfireEventHandlerContainer.Publish(registerEvent);
+
+            return Ok();
+        }
+    }
+
 
     //builder.Services.AddHangfire(x => x.UseSQLiteStorage());
     //builder.Services.AddHangfireServer();
