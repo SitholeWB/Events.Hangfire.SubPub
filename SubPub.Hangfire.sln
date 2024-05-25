@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Registration.Api", "Samples
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nuget.Registration.Api", "Samples\Nuget.Registration.Api\Nuget.Registration.Api.csproj", "{D2A4B7FA-1282-4D2E-9450-7280B4443902}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SubPub.Hangfire.Tests", "SubPub.Hangfire.Tests\SubPub.Hangfire.Tests.csproj", "{6C231BC8-2388-4747-81E3-B0751CC9AB6E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{D2A4B7FA-1282-4D2E-9450-7280B4443902}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2A4B7FA-1282-4D2E-9450-7280B4443902}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D2A4B7FA-1282-4D2E-9450-7280B4443902}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C231BC8-2388-4747-81E3-B0751CC9AB6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C231BC8-2388-4747-81E3-B0751CC9AB6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C231BC8-2388-4747-81E3-B0751CC9AB6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C231BC8-2388-4747-81E3-B0751CC9AB6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

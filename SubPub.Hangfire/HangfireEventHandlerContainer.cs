@@ -48,7 +48,7 @@ namespace SubPub.Hangfire
                 {
                     foreach (var handler in _eventHandlers[name])
                     {
-                        var service = (IHangfireEventHandler<TEvent>)_serviceProvider.GetRequiredService(handler);
+                        var service = (IHangfireEventHandler<TEvent>)_serviceProvider.GetService(handler);
                         _jobClient.Enqueue(() => service.RunAsync(obj));
                     }
                 }
