@@ -93,3 +93,5 @@ Install-Package SubPub.Hangfire
                     .Subscribe<DuplicateRegisterHandler>();
 
 ```
+## Credit
+I got some of the other code ideas from this repository https://github.com/lamondlu/EventHandlerInSingleApplication
