@@ -27,7 +27,6 @@ Install-Package SubPub.Hangfire
             Console.WriteLine("**************START 1*********");
             Console.WriteLine($"{obj.Email} from RegisterHandler");
             Console.WriteLine("**************END 1*********");
-
             return Task.CompletedTask;
         }
     }
@@ -38,7 +37,6 @@ Install-Package SubPub.Hangfire
             Console.WriteLine("**************START 1*********");
             Console.WriteLine($"{obj.Email} from Register2Handler");
             Console.WriteLine("**************END 1*********");
-
             return Task.CompletedTask;
         }
     }
@@ -50,7 +48,6 @@ Install-Package SubPub.Hangfire
             Console.WriteLine("**************START 1*********");
             Console.WriteLine($"{obj.Email} from DuplicateRegisterHandler");
             Console.WriteLine("**************END 1*********");
-
             return Task.CompletedTask;
         }
     }
@@ -74,9 +71,25 @@ Install-Package SubPub.Hangfire
                 Email = model.Email,
                 Date = DateTimeOffset.Now,
             };
-
             _hangfireEventHandlerContainer.Publish(registerEvent);
+            return Ok();
+        }
 
+        [HttpPost("schedule")]
+        public IActionResult RegisterOnSchedule(RegisterModel model)
+        {
+            var registerEvent = new RegisterEvent
+            {
+                Email = model.Email,
+                Date = DateTimeOffset.Now,
+            };
+
+            var options = new HangfireJobOptions
+            {
+                HangfireJobType = HangfireJobType.Schedule,
+                TimeSpan = TimeSpan.FromSeconds(15)
+            };
+            _hangfireEventHandlerContainer.Publish(registerEvent, options);
             return Ok();
         }
     }
