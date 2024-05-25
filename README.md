@@ -1,5 +1,8 @@
 # SubPub.Hangfire
 
+Lets you create applications with event publishers and subscribers.
+Publishers communicate LOCALLY with subscribers by broadcasting events, Hangfire will process these events in the background via implemented handlers
+
 ```nuget
 Install-Package SubPub.Hangfire
 ```
