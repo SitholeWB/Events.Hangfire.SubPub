@@ -1,5 +1,4 @@
 ﻿using Hangfire;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -40,7 +39,7 @@ namespace SubPub.Hangfire
                 {
                     foreach (var handler in _eventHandlers[name])
                     {
-                        var service = (IHangfireEventHandler<TEvent>)_serviceProvider.GetRequiredService(handler);
+                        var service = (IHangfireEventHandler<TEvent>)_serviceProvider.GetService(handler);
                         _jobClient.Schedule(() => service.RunAsync(obj), options.TimeSpan);
                     }
                 }
