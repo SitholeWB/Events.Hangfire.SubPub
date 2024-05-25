@@ -138,5 +138,38 @@ namespace SubPub.Hangfire.Tests
             _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(Test2Handler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Once());
             _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(AnotherHandler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Once());
         }
+
+        [Fact]
+        public void Enqueue_RunAsync_TwoEventsAndThreeHandlers_BUT_PublishToOneHandler_ShouldCallRunAsyncOnce()
+        {
+            // Arrange
+            _services.AddHangfireSubPub<TestEvent>()
+                     .Subscribe<TestHandler>()
+                     .Subscribe<Test2Handler>();
+            _services.AddHangfireSubPub<AnotherEvent>()
+                     .Subscribe<AnotherHandler>();
+
+            _serviceProvider.Setup(s => s.GetService(typeof(TestHandler)))
+                     .Returns(new TestHandler());
+            _serviceProvider.Setup(s => s.GetService(typeof(Test2Handler)))
+                     .Returns(new Test2Handler());
+            _serviceProvider.Setup(s => s.GetService(typeof(AnotherHandler)))
+                     .Returns(new AnotherHandler());
+
+            var provider = _services.BuildServiceProvider();
+            var _hangfireEventHandlerContainer = provider.GetRequiredService<IHangfireEventHandlerContainer>();
+
+            // Act
+            _hangfireEventHandlerContainer.Publish(new AnotherEvent
+            {
+                Name = "Bob"
+            });
+
+            // Assert
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Exactly(1));
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(TestHandler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Never());
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(Test2Handler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Never());
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(AnotherHandler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Once());
+        }
     }
 }
