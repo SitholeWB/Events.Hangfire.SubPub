@@ -8,7 +8,7 @@ namespace SubPub.Hangfire
     {
         private readonly IServiceProvider _serviceProvider;
         private readonly IBackgroundJobClient _jobClient;
-        private static readonly IDictionary<Type, HashSet<Type>> _eventHandlers = new Dictionary<Type, HashSet<Type>>();
+        private static IDictionary<Type, HashSet<Type>> _eventHandlers = new Dictionary<Type, HashSet<Type>>();
 
         public HangfireEventHandlerContainer(IServiceProvider serviceProvider, IBackgroundJobClient jobClient)
         {
