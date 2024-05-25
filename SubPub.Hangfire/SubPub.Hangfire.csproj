@@ -14,7 +14,7 @@
     <PackageTags>hangfire;SubPub;EventSourcing;Topics;PublishSubscribe</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <Description>Lets you create applications with event publishers and subscribers.
- Publishers communicate LOCALLY with subscribers by broadcasting events, Hangfire will process these events in the background via implemented handlers</Description>
+Publishers communicate LOCALLY with subscribers by broadcasting events, Hangfire will process these events in the background via implemented handlers</Description>
   </PropertyGroup>
 
   <ItemGroup>
