@@ -26,7 +26,9 @@ namespace SubPub.Hangfire.Tests
 
             var field = typeof(HangfireEventHandlerContainer).GetField("_eventHandlers", BindingFlags.Static | BindingFlags.NonPublic);
             if (field != null)
+            {
                 field.SetValue(null, new Dictionary<Type, HashSet<Type>>());
+            }
         }
 
         [Fact]
@@ -96,6 +98,8 @@ namespace SubPub.Hangfire.Tests
 
             // Assert
             _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Exactly(2));
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(TestHandler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Once());
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(Test2Handler) && job.Method.Name == "RunAsync"), It.IsAny<EnqueuedState>()), Times.Once());
         }
     }
 }
