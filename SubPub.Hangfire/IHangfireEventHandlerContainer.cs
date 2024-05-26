@@ -2,6 +2,6 @@
 {
     public interface IHangfireEventHandlerContainer
     {
-        public void Publish<T>(T obj, HangfireJobOptions? options = default) where T : class;
+        public void Publish<TEvent>(TEvent obj, HangfireJobOptions? options = default) where TEvent : class;
     }
 }

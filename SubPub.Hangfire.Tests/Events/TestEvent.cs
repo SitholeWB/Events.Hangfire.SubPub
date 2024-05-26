@@ -1,4 +1,4 @@
-﻿namespace SubPub.Hangfire.Tests
+﻿namespace SubPub.Hangfire.Tests.Events
 {
     public class TestEvent
     {

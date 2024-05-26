@@ -29,6 +29,19 @@ namespace SubPub.Hangfire
             _eventHandlers[name].Add(typeof(THandler));
         }
 
+        public void Unsubscribe<TEvent, THandler>()
+           where TEvent : class
+           where THandler : IHangfireEventHandler<TEvent>
+        {
+            var name = typeof(TEvent);
+            _eventHandlers[name].Remove(typeof(THandler));
+
+            if (_eventHandlers[name].Count == 0)
+            {
+                _eventHandlers.Remove(name);
+            }
+        }
+
         public void Publish<TEvent>(TEvent obj, HangfireJobOptions? options = default) where TEvent : class
         {
             var name = typeof(TEvent);

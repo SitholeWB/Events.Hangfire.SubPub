@@ -1,4 +1,6 @@
-﻿namespace SubPub.Hangfire.Tests
+﻿using SubPub.Hangfire.Tests.Events;
+
+namespace SubPub.Hangfire.Tests.Handlers
 {
     public class AnotherHandler : IHangfireEventHandler<AnotherEvent>
     {

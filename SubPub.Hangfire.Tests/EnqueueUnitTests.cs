@@ -4,6 +4,8 @@ using Hangfire.States;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Moq;
+using SubPub.Hangfire.Tests.Events;
+using SubPub.Hangfire.Tests.Handlers;
 using System.Reflection;
 
 namespace SubPub.Hangfire.Tests
