@@ -91,5 +91,37 @@ namespace SubPub.Hangfire.Tests
             _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(TestHandler) && job.Method.Name == "RunAsync"), It.IsAny<ScheduledState>()));
             _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Method.Name == "RunAsync"), It.IsAny<ScheduledState>()));
         }
+
+        [Fact]
+        public void Schedulee_RunAsync_OneEventAndTwoHandlers_ShouldCallRunAsyncTwice()
+        {
+            // Arrange
+            _services.AddHangfireSubPub<TestEvent>()
+                     .Subscribe<TestHandler>()
+                     .Subscribe<Test2Handler>();
+            _serviceProvider.Setup(s => s.GetService(typeof(TestHandler)))
+                     .Returns(new TestHandler());
+            _serviceProvider.Setup(s => s.GetService(typeof(Test2Handler)))
+                     .Returns(new Test2Handler());
+
+            var provider = _services.BuildServiceProvider();
+            var _hangfireEventHandlerContainer = provider.GetRequiredService<IHangfireEventHandlerContainer>();
+
+            // Act
+            _hangfireEventHandlerContainer.Publish(new TestEvent
+            {
+                Name = "Bob"
+            },
+            new HangfireJobOptions
+            {
+                HangfireJobType = HangfireJobType.Schedule,
+                TimeSpan = TimeSpan.FromSeconds(15),
+            });
+
+            // Assert
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Method.Name == "RunAsync"), It.IsAny<ScheduledState>()), Times.Exactly(2));
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(TestHandler) && job.Method.Name == "RunAsync"), It.IsAny<ScheduledState>()), Times.Once());
+            _backgroundJobClient.Verify(x => x.Create(It.Is<Job>(job => job.Type == typeof(Test2Handler) && job.Method.Name == "RunAsync"), It.IsAny<ScheduledState>()), Times.Once());
+        }
     }
 }
